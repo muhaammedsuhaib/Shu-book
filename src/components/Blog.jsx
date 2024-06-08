@@ -39,8 +39,8 @@ const Blog = () => {
   return (
     <>
       <div className="container-fluid bg-black" style={{ width: "100%", height: "100vh", justifyContent: 'center', alignContent: "center", display: 'flex', padding: "50px" }}>
-        <div className='bg-white' style={{ width: '550px', height: 'auto', paddingTop: "50px", borderRadius: '20px' }}>
-          <h3 className='text-center text-primary' style={{ fontFamily: 'fantasy' }}>SHUBOOK</h3>
+        <div className='bg-white' style={{ width: '1000px', height: 'auto', paddingTop: "50px", borderRadius: '20px' }}>
+          {/* <h3 className='text-center text-primary' style={{ fontFamily: 'fantasy' }}>SHUBOOK</h3> */}
           <div className="container">
             <form onSubmit={clickHandle}>
               <MDBInput label="Enter Heading" className='mb-3' required value={todoheading} onChange={(e) => setTodoheading(e.target.value)} />

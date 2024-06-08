@@ -3,6 +3,8 @@ import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import Blog from './Blog';
 import ShowBlog from './ShowBlog';
 import axios from "axios";
+import Home from './Home';
+import Navbar from './Navbar';
 
  export const passing=createContext()
 const Main = () => {
@@ -23,10 +25,12 @@ const Main = () => {
 }, []);
   return (
     <div>
+      {/* <Navbar/> */}
       <BrowserRouter>
         <passing.Provider value={{task,setTask}}>
         <Routes>
-        <Route path='/' element={<Blog/>}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/blog' element={<Blog/>}/>
         <Route path='/show' element={<ShowBlog/>}/>
         </Routes>
         </passing.Provider>

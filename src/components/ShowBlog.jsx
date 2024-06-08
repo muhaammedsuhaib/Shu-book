@@ -11,7 +11,7 @@ import {
   MDBModalBody,
   MDBTextArea
 } from 'mdb-react-ui-kit';
-import './stayl.css';
+import './styles.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -98,7 +98,7 @@ useEffect(() => {
 <div className="container-fluid bg-black" style={{width:"100%",height:"100vh",justifyContent:'center',alignContent:"center", display:'flex',padding:"50px",overflow:'auto'}}>
         <div className='bg-white' style={{width:'700px',height:'auto',paddingTop:"50px" ,borderRadius:'20px',overflow:'auto'}}>
         <h3 className='text-center text-primary' style={{fontFamily:'fantasy'}} >SHUBOOK</h3> 
-        <MDBBtn color='link' onClick={()=>nav('/')}> <MDBIcon fas icon="long-arrow-alt-left" /> Go back</MDBBtn>
+        <MDBBtn color='link' onClick={()=>nav('/blog')}> <MDBIcon fas icon="long-arrow-alt-left" /> Go back</MDBBtn>
        <div className="container text-end"><MDBIcon fas icon="sync-alt"  onClick={handleSyncClick}  className={isRotating ? 'rotate' : ''}  /></div> 
         <hr />
       <table class="table">
