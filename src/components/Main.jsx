@@ -5,6 +5,7 @@ import ShowBlog from './ShowBlog';
 import axios from "axios";
 import Home from './Home';
 import Navbar from './Navbar';
+import Signup from './Signup';
 
  export const passing=createContext()
 const Main = () => {
@@ -32,6 +33,7 @@ const Main = () => {
         <Route path='/' element={<Home/>}/>
         <Route path='/blog' element={<Blog/>}/>
         <Route path='/show' element={<ShowBlog/>}/>
+        <Route path='/signup' element={<Signup/>}/>
         </Routes>
         </passing.Provider>
         </BrowserRouter>
