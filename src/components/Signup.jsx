@@ -59,7 +59,7 @@ function Signup() {
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
               </div>
 
-              <MDBBtn className='w-100 mb-4' size='md'>sign up</MDBBtn>
+              <MDBBtn className='w-100 mb-4' size='md' href='/collect'>sign up</MDBBtn>
 
               <div className="text-center">
 
