@@ -12,9 +12,9 @@ const Home = () => {
         <source src={backgroundVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="overlay">
+      <div className="overlay">        
         <h1 className='text-start text-primary p-3' style={{ fontFamily: 'fantasy' }}>SHUBOOK</h1>
-        <div className="container">
+        <div className="container" style={{display:'grid',placeItems:'center',height:'100%'}}>
         <h1 className='text-center text-white display-1' style={{ fontFamily: 'inherit' }}>Organize your work and life, finally.</h1>
         <p  className='text-center text-white fs-3'  style={{ fontFamily: 'unset' }}>Welcome to SHUBOOK, where productivity meets simplicity – your ultimate destination to organize tasks, streamline schedules, and conquer your day with ease.</p>
         <div className="container text-center">
