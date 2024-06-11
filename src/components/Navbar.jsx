@@ -16,12 +16,12 @@ export default function Navbar() {
   return (
     <>
       <MDBCollapse open={openNavExternal}>
-        <div className='bg-dark p-4'>
+        <div className='bg-hsl(218, 41%, 15%) p-4'>
           <h5 className='text-white h4'>Collapsed content</h5>
           <span className='text-muted'>Toggleable via the navbar brand.</span>
         </div>
       </MDBCollapse>
-      <MDBNavbar dark bgColor='dark'>
+      <MDBNavbar dark bgColor='hsl(218, 41%, 15%)'>
         <MDBContainer fluid>
           <MDBNavbarToggler
             type='button'
@@ -33,6 +33,9 @@ export default function Navbar() {
           >
             <MDBIcon icon='bars' fas />
           </MDBNavbarToggler>
+          <MDBNavbarBrand className='p-0'>
+          <h1 className='text-dark text-bold font-monospace'>SHUBOOK</h1>
+          </MDBNavbarBrand>
         </MDBContainer>
       </MDBNavbar>
     </>
