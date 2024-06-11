@@ -2,53 +2,39 @@ import React, { useState } from 'react';
 import {
   MDBNavbar,
   MDBContainer,
-  MDBIcon,
-  MDBNavbarNav,
+  MDBNavbarBrand,
+  MDBNavbarToggler,
   MDBNavbarItem,
   MDBNavbarLink,
-  MDBNavbarToggler,
-  MDBNavbarBrand,
+  MDBIcon,
   MDBCollapse
 } from 'mdb-react-ui-kit';
 
 export default function Navbar() {
-  const [togle, setTogle] = useState(false);
+  const [openNavExternal, setOpenNavExternal] = useState(false);
 
   return (
     <>
-      <MDBNavbar expand='lg'  dark bgColor='primary'>
+      <MDBCollapse open={openNavExternal}>
+        <div className='bg-dark p-4'>
+          <h5 className='text-white h4'>Collapsed content</h5>
+          <span className='text-muted'>Toggleable via the navbar brand.</span>
+        </div>
+      </MDBCollapse>
+      <MDBNavbar dark bgColor='dark'>
         <MDBContainer fluid>
-          <MDBNavbarBrand href='/'>          <h3 className='text-center text-white' style={{ fontFamily: 'fantasy' }}>SHUBOOK</h3></MDBNavbarBrand>
           <MDBNavbarToggler
             type='button'
-            data-target='#navbarColor02'
-            aria-controls='navbarColor02'
+            data-target='#navbarToggleExternalContent'
+            aria-controls='navbarToggleExternalContent'
             aria-expanded='false'
             aria-label='Toggle navigation'
-            onClick={() => setTogle(!togle)}
+            onClick={() => setOpenNavExternal(!openNavExternal)}
           >
             <MDBIcon icon='bars' fas />
           </MDBNavbarToggler>
-          <MDBCollapse open={togle} navbar>
-            <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
-              <MDBNavbarItem className='active'>
-                <MDBNavbarLink aria-current='page' href='#'>
-                  Home
-                </MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Features</MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Pricing</MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>About</MDBNavbarLink>
-              </MDBNavbarItem>
-            </MDBNavbarNav>
-          </MDBCollapse>
         </MDBContainer>
-      </MDBNavbar>     
+      </MDBNavbar>
     </>
   );
 }
