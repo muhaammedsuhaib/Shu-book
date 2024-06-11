@@ -18,7 +18,7 @@ const Home = () => {
         <h1 className='text-center text-white display-1' style={{ fontFamily: 'inherit' }}>Organize your work and life, finally.</h1>
         <p  className='text-center text-white fs-3'  style={{ fontFamily: 'unset' }}>Welcome to SHUBOOK, where productivity meets simplicity – your ultimate destination to organize tasks, streamline schedules, and conquer your day with ease.</p>
         <div className="container text-center">
-        <MDBBtn variant="primary" className="btn btn-lg btn-primary text-center" onClick={()=>nav('/signup')}>Get Started </MDBBtn>
+        <MDBBtn variant="primary" className="btn btn-lg btn-primary text-center" onClick={()=>nav('/login')}>Get Started </MDBBtn>
         </div>
         </div>
       </div>

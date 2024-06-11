@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { passing } from './Main';
+import  './styles.css';
+
 import {
   MDBContainer,
   MDBRow,
@@ -18,6 +20,14 @@ import {
   MDBDropdownItem,MDBCardImage
 }
 from 'mdb-react-ui-kit';
+import {
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+} from 'mdb-react-ui-kit';
 import Navbar from './Navbar';
 
 const Blog = () => {
@@ -130,7 +140,10 @@ useEffect(() => {
     <Navbar/>
  <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
 
-          <MDBRow className='flex-md-row-reverse'>
+          <MDBRow className='sm'>
+            <MDBCol md={'12'}>
+              <div className="container text-center text-white" > <MDBBtn color='tertiary' size='lg' onClick={()=>nav('/collect')}><MDBIcon fas icon="plus-circle" /> Add task</MDBBtn></div>
+            </MDBCol>
 
 <MDBCol md='9' className='text-center text-md-start d-flex flex-column'>
 
@@ -162,39 +175,77 @@ useEffect(() => {
           </MDBCard>      
 </MDBCol>
 
-<MDBCol md='3' className='text-center text-md-start d-flex flex-column justify-content-center order-md-1'>
+<MDBCol md='3'>
 
-  <MDBCard className='my-3 bg-glass'>
-    <MDBCardBody className='text-center'>
-    {/* <MDBCardImage
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                  alt="avatar"
-                  className="rounded-circle"
-                  style={{ width: '150px' }}
-                  fluid /> */}
-                  <MDBIcon fas icon="user-circle" size='8x' />
-                <p className="text-muted fw-bold mb-2">[USER NAME]</p>
-                <MDBCol sm="12">
-                <p className="text-muted mb-4 text-sm-center "><MDBIcon fas icon="envelope"/> suhaib@gmail.com</p>
-                </MDBCol>
-                <hr />
-                  <MDBBtn color='tertiary'>
-                {/* <MDBIcon fas icon="user-cog" size='2x'/> */}
-             <MDBIcon fas icon="cog" /> settings
-                  </MDBBtn>
-   
-                <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn>Follow</MDBBtn>
-                  <MDBBtn outline className="ms-1">Message</MDBBtn>
-                </div>
-    </MDBCardBody>
-  </MDBCard>
+        <MDBCard className='my-3 bg-glass'>
+        <MDBCardBody className='p-1'>
+        <details><summary>read more</summary>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur perspiciatis est ad quo similique rerum voluptates nostrum quae corrupti, dignissimos dolorem consequatur quibusdam labore quas voluptatem enim? Sapiente, maiores accusantium.</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere itaque reprehenderit blanditiis ipsam exercitationem, quam aperiam dignissimos ipsum, officia temporibus provident totam nesciunt at ex sit asperiores optio consequuntur obcaecati?</p>
+          </details>
+
+              <div className="container  fs-5 text text-white"><MDBIcon fas icon="plus-circle" /> Add task</div>
+
+        </MDBCardBody>
+          </MDBCard>      
 </MDBCol>
+
+
 
 </MDBRow>
 
 
 </MDBContainer>
+
+ {/* show Modal  */}
+ <MDBModal open={showModal} onClose={() => setShowModal(false)} tabIndex='-1' >
+  <MDBModalDialog scrollable size='lg'>
+    <MDBModalContent  >
+      <MDBModalHeader>
+        <MDBModalTitle >  <h3 className='text-primary' style={{fontFamily:'fantasy'}} >SHUBOOK</h3></MDBModalTitle>
+        <MDBBtn
+          className='btn-close'
+          color='none'
+          onClick={() => setShowModal(false)}
+        ></MDBBtn>
+      </MDBModalHeader>
+      <MDBModalBody>      
+        <div className='bg-white' style={{width:'100%',height:'70vh',overflow:'auto'}}>
+      <h3 className='text-center text-break' style={{fontFamily:'Verdana, Arial, Helvetica, sans-serif'}}>{sh?.Todoheading}</h3> <hr />
+      <p className='text-break'><b>{sh?.Todotext}</b></p>
+          </div>
+      </MDBModalBody>
+    </MDBModalContent>
+  </MDBModalDialog>
+</MDBModal>
+
+ {/* edit modal */}
+ <MDBModal open={editModal} onClose={() => setEditModal(false)} tabIndex='-1' >
+  <MDBModalDialog scrollable size='lg'>
+    <MDBModalContent  >
+      <MDBModalHeader>
+        <MDBModalTitle >  <h3 className='text-primary' style={{fontFamily:'fantasy'}} >SHUBOOK</h3></MDBModalTitle>
+        <MDBBtn
+          className='btn-close'
+          color='none'
+          onClick={() => setEditModal(false)}
+        ></MDBBtn>
+      </MDBModalHeader>
+      <MDBModalBody>      
+        <div className='bg-white' style={{width:'100%',height:'70vh',overflow:'auto'}}>
+        <div className="container">
+        <form className='container'>
+        <MDBInput label="Enter Heading" className='mt-2 mb-4' value={editHeading} onChange={(e)=>setEditHeading(e.target.value)} required/>
+        <MDBTextArea label="Enter Task"  rows="{5}" required value={editText}  onChange={(e)=>setEditText(e.target.value)} className='mb-3 p-3'/>
+        
+        <MDBBtn   block onClick={()=>editTask()} ><MDBIcon fas icon="save" /> CHAnge and Save</MDBBtn>        
+          </form> 
+          </div>  
+          </div>
+      </MDBModalBody>
+    </MDBModalContent>
+  </MDBModalDialog>
+</MDBModal>
       <ToastContainer />
     </>
   );

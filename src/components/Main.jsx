@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import Blog from './Blog';
-import ShowBlog from './ShowBlog';
 import axios from "axios";
 import Home from './Home';
 import Navbar from './Navbar';
@@ -34,7 +33,6 @@ const Main = () => {
         <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/blog' element={<Blog/>}/>
-        <Route path='/show' element={<ShowBlog/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/collect' element={<Collect/>}/>

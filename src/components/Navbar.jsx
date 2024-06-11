@@ -15,9 +15,12 @@ import {
   MDBDropdownItem,
   MDBDropdownMenu
 } from 'mdb-react-ui-kit';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
   const [openNavExternal, setOpenNavExternal] = useState(false);
+
+  const nav =useNavigate()
 
   return (
     <>
@@ -51,7 +54,7 @@ export default function Navbar() {
             <MDBIcon icon='bars' fas />
           </MDBNavbarToggler>
           <MDBNavbarBrand className='p-0'>
-          <h1 className='text-bold font-monospace' style={{color:'hsl(218, 51%, 45%)'}}>SHUBOOK</h1>
+          <h1 className='text-bold font-monospace' style={{color:'hsl(218, 51%, 45%)'}} onClick={()=>nav('/')}>SHUBOOK</h1>
           </MDBNavbarBrand>
         </MDBContainer>
       </MDBNavbar>

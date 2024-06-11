@@ -95,7 +95,7 @@ function Collect() {
             <MDBTextArea label="Description" id="textAreaExample" rows={10} required value={todotext} onChange={(e) => setTodotext(e.target.value)} className='mb-3 p-3'/>
               <MDBBtn type="submit" block  style={{background: 'hsl(218, 81%, 70%)',color:'black'}}>Add Task</MDBBtn>
               <div className='container text-center'>
-              <MDBBtn   color='tertiary' onClick={() => nav('/show')} >Cancel</MDBBtn>
+              <MDBBtn   color='tertiary' onClick={() => nav('/blog')} >Cancel</MDBBtn>
 
               </div>
             </form>
