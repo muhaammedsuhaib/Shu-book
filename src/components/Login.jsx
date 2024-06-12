@@ -23,14 +23,14 @@ function Login() {
 
         <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
 
-          <h1 className="my-5 display-4 fw-bold ls-tight px-3" style={{color: 'hsl(218, 81%, 95%)'}}>
-          Shubook simplifies  <br />
-            <span style={{color: 'hsl(218, 81%, 75%)'}}>task management</span>
+          <h1 className="my-5 display-3 fw-bold ls-tight px-3" style={{color: 'hsl(218, 81%, 95%)'}}>
+          Get more done <br />
+            <span style={{color: 'hsl(218, 81%, 75%)'}}>using Shubook.</span>
           </h1>
 
           <p className='px-3' style={{color: 'hsl(218, 81%, 85%)'}}>
-          Revolutionize your business operations and skyrocket efficiency with Shubook's state-of-the-art task management system. Seamlessly integrate tasks, delegate responsibilities, and track progress effortlessly to propel your business to new heights of success.
-          </p>
+            Empower every facet of your routine with Shubook's groundbreaking task management system. Seamlessly organize tasks, optimize efficiency, and take command of your daily productivity journey with unparalleled ease and precision.
+         </p>
 
         </MDBCol>
 
@@ -54,11 +54,11 @@ function Login() {
 
                 <p>www.shubook.com</p>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                  <MDBIcon fab icon='facebook-f' size="sm"/>
+                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://www.facebook.com/profile.php?id=100073352894286&mibextid=ZbWKwL'>
+                  <MDBIcon fab icon='facebook-f' size="sm" />
                 </MDBBtn>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://x.com/MuhaammedSuhaib'>
                   <MDBIcon fab icon='twitter' size="sm"/>
                 </MDBBtn>
 
@@ -66,7 +66,7 @@ function Login() {
                   <MDBIcon fab icon='google' size="sm"/>
                 </MDBBtn>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://github.com/muhaammedsuhaib'>
                   <MDBIcon fab icon='github' size="sm"/>
                 </MDBBtn>
 
