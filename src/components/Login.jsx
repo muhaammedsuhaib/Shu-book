@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   MDBBtn,
   MDBContainer,
@@ -12,10 +12,36 @@ import {
 }
 from 'mdb-react-ui-kit';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
 
+  const [collect,setcollect]=useState([]);
+ const [userdata,setUserData]=useState([]);
   const nav=useNavigate();
+  const handleSubmit= async(e)=>{
+
+    const consfig = {
+      headers : {
+        "content-type":"application/json",
+      }
+  }
+   try {
+    e.preventDefault()
+    const response= await axios.post("http://localhost:4000/api/users/login",{
+  email:collect.email,
+  password:collect.password
+    },consfig)
+    setTimeout(()=>{        
+      setUserData(response.data.user);
+      nav('/')
+    },1000)
+    alert(response.data.message)
+   } catch (error) {
+    // alert.error(error.response.data.message)
+    alert('error')
+   }
+  }
   return (
     <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
 
@@ -42,13 +68,20 @@ function Login() {
           <MDBCard className='my-5 bg-glass'>
             <MDBCardBody className='p-5'>
 
-             
-
+            <form onSubmit={handleSubmit}>
+                 <MDBInput required wrapperClass="mb-4" defaultValue={'ronaldo@gmail.com'} label='Email'  type='email' onChange={(e)=>setcollect({...collect,email:e.target.value})}/>
+                 <MDBInput required wrapperClass="mb-4" defaultValue={12345678} label='Password' type='password'  onChange={(e)=>setcollect({...collect,password:e.target.value})} />                     
+                 <div className="d-grid gap-2"> 
+                      <MDBBtn className='w-100 mb-2' size='md' type="submit">Login</MDBBtn>
+                       </div>                                                    
+                 </form>
+                      <MDBBtn  color='tertiary' onClick={()=>nav('/signup')} >     Create new account    </MDBBtn>
+{/* 
               <MDBInput wrapperClass='mb-4' label='Email' id='form3' type='email'/>
               <MDBInput wrapperClass='mb-4' label='Password' id='form4' type='password'/>           
 
               <MDBBtn className='w-100 mb-2' size='md'>Login</MDBBtn>
-              <MDBBtn className='w-100 mb-4' color='tertiary' size='sm' onClick={()=>nav('/signup')}>Create new account</MDBBtn>
+              <MDBBtn className='w-100 mb-4' color='tertiary' size='sm' onClick={()=>nav('/signup')}>Create new account</MDBBtn> */}
 
               <div className="text-center">
 

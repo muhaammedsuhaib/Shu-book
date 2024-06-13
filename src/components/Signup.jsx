@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   MDBBtn,
   MDBContainer,
@@ -11,8 +11,37 @@ import {
   MDBIcon
 }
 from 'mdb-react-ui-kit';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
+
+  const [collect,setCollect]=useState('');
+     const [auth,setAuth]=useState(true);
+     const [useData,setUserData]=useState(true);
+
+     const nav =useNavigate();
+
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+    try {
+     const response = await axios.post('http://localhost:4000/api/users/register',{
+        email:collect.email,
+        password:collect.password,          
+      })
+      setAuth(!auth)
+      setCollect('')
+      setTimeout(()=>{
+                    nav('/login')
+                },1000) 
+      toast.success(response.data.message)
+    } catch (error) {
+      toast.error(error.response.data.message);        
+    }
+  }
   return (
     <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
 
@@ -38,35 +67,40 @@ function Signup() {
 
           <MDBCard className='my-5 bg-glass'>
             <MDBCardBody className='p-5'>
+              
+              {/* <MDBInput wrapperClass='mb-4' label='Email' id='form3' type='email'/>
+              <MDBInput wrapperClass='mb-4' label='Password' id='form4' type='password'/> */}
 
-              <MDBRow>
-                <MDBCol col='6'>
-                  <MDBInput wrapperClass='mb-4' label='First name' id='form1' type='text'/>
-                </MDBCol>
 
-                <MDBCol col='6'>
-                  <MDBInput wrapperClass='mb-4' label='Last name' id='form2' type='text'/>
-                </MDBCol>
-              </MDBRow>
+              <form onSubmit={handleSubmit} >
+          {/* <h4>Create new account</h4> */}
+         {/* <MDBFile wrapperClass="mb-4" label="Choose file" onChange={(e)=>setCollect({...collect,image:e.target.value})} /> */}
+          {/* <MDBInput required wrapperClass='mb-4 mt-3' label='Name' id='form1' name="username" type='text'onChange={(e)=>setCollect({...collect,username:e.target.value})} /> */}
+          <MDBInput required wrapperClass="mb-4" label='Email' id='form2' name="email" type='email' onChange={(e)=>setCollect({...collect,email:e.target.value})}/>
+          <MDBInput required wrapperClass="mb-4"  label='Password' id='form3' name="password" type='password' onChange={(e)=>setCollect({...collect,password:e.target.value})} />
+          {/* <MDBInput required wrapperClass="mb-4" label='Confirm Password' id='form4' name="cPassword" type='password' onChange={(e)=>setCollect({...collect,cpassword:e.target.value})}/>     */}
+             
+          <MDBBtn className='w-100 mb-2' size='md' type="submit" >sign up</MDBBtn>
+             {/* <MDBBtn  className='mx-2' color='secondary'  type="submit"> Submit </MDBBtn>    */}
+                     
+          </form>
+          <MDBBtn rounded color='tertiary' onClick={()=>{setUserData(null);nav('/login')}} > Login </MDBBtn>
 
-              <MDBInput wrapperClass='mb-4' label='Email' id='form3' type='email'/>
-              <MDBInput wrapperClass='mb-4' label='Password' id='form4' type='password'/>
-
-              <div className='d-flex justify-content-center mb-4'>
+              {/* <div className='d-flex justify-content-center mb-4'>
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
-              </div>
+              </div> */}
 
-              <MDBBtn className='w-100 mb-4' size='md' href='/collect'>sign up</MDBBtn>
+              {/* <MDBBtn className='w-100 mb-4' size='md' href='/collect'>sign up</MDBBtn> */}
 
               <div className="text-center">
 
-                <p>or sign up with:</p>
+                <p>www.shubook.com</p>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                  <MDBIcon fab icon='facebook-f' size="sm"/>
+                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://www.facebook.com/profile.php?id=100073352894286&mibextid=ZbWKwL'>
+                  <MDBIcon fab icon='facebook-f' size="sm" />
                 </MDBBtn>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://x.com/MuhaammedSuhaib'>
                   <MDBIcon fab icon='twitter' size="sm"/>
                 </MDBBtn>
 
@@ -74,7 +108,7 @@ function Signup() {
                   <MDBIcon fab icon='google' size="sm"/>
                 </MDBBtn>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://github.com/muhaammedsuhaib'>
                   <MDBIcon fab icon='github' size="sm"/>
                 </MDBBtn>
 

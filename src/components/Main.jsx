@@ -12,6 +12,7 @@ import Login from './Login';
 const Main = () => {
    
     const [task,setTask]=useState([]);
+    const [useData,setUserData]=useState([]);
 
     const fetchTasks = async () => {
       try {
@@ -29,7 +30,7 @@ const Main = () => {
     <div>
       {/* <Navbar/> */}
       <BrowserRouter>
-        <passing.Provider value={{task,setTask}}>
+        <passing.Provider value={{task,setTask,useData,setUserData}}>
         <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/blog' element={<Blog/>}/>
