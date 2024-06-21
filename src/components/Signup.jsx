@@ -27,21 +27,22 @@ function Signup() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
+    const response = await axios.post('http://localhost:4000/api/users/register',{
+       email:collect.email,
+       password:collect.password,          
+     });
     try {
-     const response = await axios.post('http://localhost:4000/api/users/register',{
-        email:collect.email,
-        password:collect.password,          
-      })
       setAuth(!auth)
       setCollect('')
+      alert(response.data.message)
       setTimeout(()=>{
                     nav('/login')
                 },1000) 
-      toast.success(response.data.message)
     } catch (error) {
       toast.error(error.response.data.message);        
     }
   }
+  
   return (
     <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
 

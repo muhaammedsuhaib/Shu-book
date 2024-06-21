@@ -12,7 +12,7 @@ import Login from './Login';
 const Main = () => {
    
     const [task,setTask]=useState([]);
-    const [useData,setUserData]=useState([]);
+    const [userData,setUserData]=useState(null);
 
     const fetchTasks = async () => {
       try {
@@ -22,15 +22,18 @@ const Main = () => {
           console.error('Error fetching tasks:', error);
       }
   };
+  
 
   useEffect(() => {
     fetchTasks();
+    const storedUserData = localStorage.getItem("user");
+    setUserData(storedUserData);
 }, []);
   return (
     <div>
       {/* <Navbar/> */}
       <BrowserRouter>
-        <passing.Provider value={{task,setTask,useData,setUserData}}>
+        <passing.Provider value={{task,setTask,userData,setUserData}}>
         <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/blog' element={<Blog/>}/>

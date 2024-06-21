@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   MDBNavbar,
   MDBContainer,
@@ -16,10 +16,11 @@ import {
   MDBDropdownMenu
 } from 'mdb-react-ui-kit';
 import { useNavigate } from 'react-router-dom';
+import { passing } from './Main';
 
 export default function Navbar() {
   const [openNavExternal, setOpenNavExternal] = useState(false);
-
+  const {userData,setUserData}=useContext(passing)
   const nav =useNavigate()
 
   return (
@@ -27,7 +28,7 @@ export default function Navbar() {
       <MDBCollapse open={openNavExternal}>
         <div className='d-flex p-2 gap-4'>
         <MDBIcon fas icon="user-circle" size='2x' /> 
-        <p className='text-muted mt-1'><MDBIcon fas icon="envelope"/> [user@gmail.com]</p>
+        <p className='text-muted mt-1'><MDBIcon fas icon="envelope"/> {userData}</p>
           <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link  p-0 hidden-arrow' role='button'  >
                 <MDBIcon fas icon="cog" className='mt-2' size='1x' />
