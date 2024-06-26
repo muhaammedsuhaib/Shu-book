@@ -38,10 +38,13 @@ function Login() {
         },
         config
       );
+      localStorage.setItem('user', JSON.stringify({
+        email: collect.email,
+        id: response.data.user._id,
+        token: response.data.token,
+      })); 
 
-      localStorage.setItem('user', collect.email); // Storing email in local storage
-
-      setUserData(response.data.user); // Setting user data from response
+      // setUserData(response.data.user); // Setting user data from response
       alert(response.data.message);
       setTimeout(() => {
         nav('/blog'); // Redirecting to home page after 1 second

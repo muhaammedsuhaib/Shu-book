@@ -27,6 +27,7 @@ const Main = () => {
   useEffect(() => {
     fetchTasks();
     const storedUserData = localStorage.getItem("user");
+    // const DataUser=JSON.parse(storedUserData);
     setUserData(storedUserData);
 }, []);
   return (

@@ -139,7 +139,7 @@ useEffect(() => {
       }
       console.log("Error adding Data", error);
     }
-  };
+  };  
   return (
     <>
     <Navbar/>
@@ -183,7 +183,7 @@ useEffect(() => {
 <MDBCol md='3'>
   <div className='my-3 text-white'>
     <div className='p-1'>
-      Hey, {userData && userData}! Welcome to ShuBook, the ultimate task management solution meticulously developed by Suhaib, a seasoned software architect. Dive into our platform tailored to supercharge productivity and streamline your daily operations effortlessly. Stay connected with Suhaib on LinkedIn for further insights and updates:<a target='_blank' href='https://www.linkedin.com/in/muhammedsuhaib/' >Connect on LinkedIn.</a> 
+      Hey, {userData && userData._id}! Welcome to ShuBook, the ultimate task management solution meticulously developed by Suhaib, a seasoned software architect. Dive into our platform tailored to supercharge productivity and streamline your daily operations effortlessly. Stay connected with Suhaib on LinkedIn for further insights and updates:<a target='_blank' href='https://www.linkedin.com/in/muhammedsuhaib/' >Connect on LinkedIn.</a> 
       
       <div className="container fs-5 text text-white">
         <img src="/Logo.png" alt="Your Brand Logo" width={'150px'}  />

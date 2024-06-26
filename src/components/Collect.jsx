@@ -32,7 +32,7 @@ function Collect() {
     e.preventDefault();
 
     try {
-       await axios.post("http://localhost:4000/api/add", {
+       await axios.post(`http://localhost:4000/api/${'a'}/add`, {
         Todoheading: todoheading,
         Todotext: todotext,
       });
