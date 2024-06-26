@@ -15,8 +15,8 @@ const Home = () => {
     
       <img src="/Logo.png" alt="" className="bg-transparent zoom-image" width={"200px"} />
       <div className="container p-5" style={{ display: 'grid', placeItems: 'center' }}>
-        <h1 className='text-center text-white display-2'>Organize your work and life, finally.</h1>
-        <p className='text-center text-white fs-3' style={{ fontFamily: 'unset' }}>
+        <h1 className='text-center text-white display-2'>Organize your work<span style={{color: 'hsl(218, 81%, 75%)'}}> and life, finally.</span> </h1>
+        <p className='text-center fs-3' style={{fontFamily: 'unset', color: 'hsl(218, 81%, 85%)' }}>
           Welcome to SHUBOOK, where productivity meets simplicity – your ultimate destination to organize tasks, streamline schedules, and conquer your day with ease.
         </p>
         <div className="container text-center">
