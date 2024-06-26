@@ -63,3 +63,14 @@
   background-color: hsla(0, 0%, 100%, 0.9) !important;
   backdrop-filter: saturate(200%) blur(25px);
 }
+
+
+.zoom-image {
+  transform: scale(1.2);
+  transition: transform 0.5s ease-in-out;
+
+}
+
+.zoom-image:hover {
+  transform: scale(1.1);
+}

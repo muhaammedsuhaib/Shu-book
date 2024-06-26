@@ -28,7 +28,7 @@ export default function Navbar() {
       <MDBCollapse open={openNavExternal}>
         <div className='d-flex p-2 gap-4'>
         <MDBIcon fas icon="user-circle" size='2x' /> 
-        <p className='text-muted mt-1'><MDBIcon fas icon="envelope"/> {userData}</p>
+        <p className='text-muted mt-1'><MDBIcon fas icon="envelope"/> {userData&&userData}</p>
           <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link  p-0 hidden-arrow' role='button'  >
                 <MDBIcon fas icon="cog" className='mt-2' size='1x' />
@@ -55,7 +55,8 @@ export default function Navbar() {
             <MDBIcon icon='bars' fas />
           </MDBNavbarToggler>
           <MDBNavbarBrand className='p-0'>
-          <h1 className='text-bold font-monospace' style={{color:'hsl(218, 51%, 45%)'}} onClick={()=>nav('/')}>SHUBOOK</h1>
+          <img src="/Logo.png" alt="" className="bg-transparent zoom-image" width={"100px"} />
+          {/* <h1 className='text-bold font-monospace' style={{color:'hsl(218, 51%, 45%)'}} onClick={()=>nav('/')}>SHUBOOK</h1> */}
           </MDBNavbarBrand>
         </MDBContainer>
       </MDBNavbar>

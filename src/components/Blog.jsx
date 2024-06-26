@@ -33,7 +33,7 @@ import Navbar from './Navbar';
 const Blog = () => {
 
 
-  const {userData,setUserData}=useContext(passing)
+  const {userData,setUserData}=useContext(passing);
   const [todoheading, setTodoheading] = useState('');
   const [todotext, setTodotext] = useState('');
   const [auth,setAuth]=useState(false);
