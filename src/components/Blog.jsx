@@ -186,7 +186,7 @@ useEffect(() => {
       Hey, {userData && userData}! Welcome to ShuBook, the ultimate task management solution meticulously developed by Suhaib, a seasoned software architect. Dive into our platform tailored to supercharge productivity and streamline your daily operations effortlessly. Stay connected with Suhaib on LinkedIn for further insights and updates:<a target='_blank' href='https://www.linkedin.com/in/muhammedsuhaib/' >Connect on LinkedIn.</a> 
       
       <div className="container fs-5 text text-white">
-        <img src="/Logo.png" alt="Your Brand Logo" width={'150px'} />
+        <img src="/Logo.png" alt="Your Brand Logo" width={'150px'}  />
         {/* <MDBIcon fas icon="plus-circle" /> Add task */}
       </div>
     </div>
@@ -205,7 +205,7 @@ useEffect(() => {
   <MDBModalDialog scrollable size='lg'>
     <MDBModalContent  >
       <MDBModalHeader>
-        <MDBModalTitle >  <h3 className='text-primary' style={{fontFamily:'fantasy'}} >SHUBOOK</h3></MDBModalTitle>
+        <MDBModalTitle >       <img src="/Logo.png" alt="Your Brand Logo" width={'150px'}    style={{ filter: 'brightness(0%)'}} /></MDBModalTitle>
         <MDBBtn
           className='btn-close'
           color='none'
@@ -227,7 +227,7 @@ useEffect(() => {
   <MDBModalDialog scrollable size='lg'>
     <MDBModalContent  >
       <MDBModalHeader>
-        <MDBModalTitle >  <h3 className='text-primary' style={{fontFamily:'fantasy'}} >SHUBOOK</h3></MDBModalTitle>
+        <MDBModalTitle >        <img src="/Logo.png" alt="Your Brand Logo" width={'150px'}    style={{ filter: 'brightness(0%)'}} /></MDBModalTitle>
         <MDBBtn
           className='btn-close'
           color='none'
@@ -238,9 +238,8 @@ useEffect(() => {
         <div className='bg-white' style={{width:'100%',height:'70vh',overflow:'auto'}}>
         <div className="container">
         <form className='container'>
-        <MDBInput label="Enter Heading" className='mt-2 mb-4' value={editHeading} onChange={(e)=>setEditHeading(e.target.value)} required/>
-        <MDBTextArea label="Enter Task"  rows="{5}" required value={editText}  onChange={(e)=>setEditText(e.target.value)} className='mb-3 p-3'/>
-        
+        <MDBInput label="Task name" className='mt-2 mb-4' value={editHeading} onChange={(e)=>setEditHeading(e.target.value)} required/>
+        <MDBTextArea label="Description" id="textAreaExample" rows={10} required value={editText} onChange={(e)=>setEditText(e.target.value)} className='mb-3 p-3'/>
         <MDBBtn   block onClick={()=>editTask()} ><MDBIcon fas icon="save" /> CHAnge and Save</MDBBtn>        
           </form> 
           </div>  
