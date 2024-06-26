@@ -25,15 +25,15 @@ export default function Navbar() {
 
   return (
     <>
-      <MDBCollapse open={openNavExternal}>
+      <MDBCollapse open={openNavExternal} className='text-white'>
         <div className='d-flex p-2 gap-4'>
         <MDBIcon fas icon="user-circle" size='2x' /> 
-        <p className='text-muted mt-1'><MDBIcon fas icon="envelope"/> {userData&&userData}</p>
+        <p className='text-white mt-1'>{userData&&userData}</p>
           <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link  p-0 hidden-arrow' role='button'  >
                 <MDBIcon fas icon="cog" className='mt-2' size='1x' />
                 </MDBDropdownToggle>
-                <MDBDropdownMenu style={{backgroundColor:'hsl(218, 31%, 9%)'}}>
+                <MDBDropdownMenu style={{backgroundColor:'white',color:'white'}}>
                   <MDBDropdownItem link ><MDBIcon fas icon="user-circle" /> Profile</MDBDropdownItem>
                   <MDBDropdownItem link ><MDBIcon fas icon="cogs" /> Settings</MDBDropdownItem>
                   <MDBDropdownItem link ><MDBIcon fas icon="user-plus" /> Add new account</MDBDropdownItem>
@@ -56,7 +56,6 @@ export default function Navbar() {
           </MDBNavbarToggler>
           <MDBNavbarBrand className='p-0'>
           <img src="/Logo.png" alt="" className="bg-transparent zoom-image" width={"100px"} />
-          {/* <h1 className='text-bold font-monospace' style={{color:'hsl(218, 51%, 45%)'}} onClick={()=>nav('/')}>SHUBOOK</h1> */}
           </MDBNavbarBrand>
         </MDBContainer>
       </MDBNavbar>

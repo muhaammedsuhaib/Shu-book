@@ -112,7 +112,7 @@ fetchTasks();
 };
 
 
-console.log();
+
 useEffect(() => {
   fetchTasks();
 }, [ ]);
@@ -147,7 +147,7 @@ useEffect(() => {
 
           <MDBRow className='sm'>
             <MDBCol md={'12'}>
-              <div className="container text-center text-white" > <MDBBtn color='tertiary' size='lg' onClick={()=>nav('/collect')}><MDBIcon fas icon="plus-circle" /> Add task</MDBBtn></div>
+              <div className="container text-center text-white" > <span color='tertiary' size='lg' className='bg-transparent' onClick={()=>nav('/collect')}><MDBIcon fas icon="plus-circle" />  Add task</span></div>
             </MDBCol>
 
 <MDBCol md='9' className='text-center text-md-start d-flex flex-column'>
@@ -181,18 +181,16 @@ useEffect(() => {
 </MDBCol>
 
 <MDBCol md='3'>
-
-        <MDBCard className='my-3 bg-glass'>
-        <MDBCardBody className='p-1'>
-        <details><summary>read more</summary>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur perspiciatis est ad quo similique rerum voluptates nostrum quae corrupti, dignissimos dolorem consequatur quibusdam labore quas voluptatem enim? Sapiente, maiores accusantium.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere itaque reprehenderit blanditiis ipsam exercitationem, quam aperiam dignissimos ipsum, officia temporibus provident totam nesciunt at ex sit asperiores optio consequuntur obcaecati?</p>
-          </details>
-
-              <div className="container  fs-5 text text-white"><MDBIcon fas icon="plus-circle" /> Add task</div>
-
-        </MDBCardBody>
-          </MDBCard>      
+  <div className='my-3 text-white'>
+    <div className='p-1'>
+      Hey, {userData && userData}! Welcome to ShuBook, the ultimate task management solution meticulously developed by Suhaib, a seasoned software architect. Dive into our platform tailored to supercharge productivity and streamline your daily operations effortlessly. Stay connected with Suhaib on LinkedIn for further insights and updates:<a target='_blank' href='https://www.linkedin.com/in/muhammedsuhaib/' >Connect on LinkedIn.</a> 
+      
+      <div className="container fs-5 text text-white">
+        <img src="/Logo.png" alt="Your Brand Logo" width={'150px'} />
+        {/* <MDBIcon fas icon="plus-circle" /> Add task */}
+      </div>
+    </div>
+  </div>
 </MDBCol>
 
 
