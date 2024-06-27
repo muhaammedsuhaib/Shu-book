@@ -24,15 +24,16 @@ function Collect() {
   const [todotext, setTodotext] = useState('');
   const [auth,setAuth]=useState(false);
 
-  const {Task,setTask}=useContext(passing)
-  
+  const {Task,setTask,userData}=useContext(passing);
+
+  console.log(userData);
   const nav = useNavigate();
 
   const clickHandle = async (e) => {
     e.preventDefault();
 
     try {
-       await axios.post(`http://localhost:4000/api/${'a'}/add`, {
+       await axios.post(`http://localhost:4000/api/${userData.id}/add`, {
         Todoheading: todoheading,
         Todotext: todotext,
       });
@@ -40,6 +41,10 @@ function Collect() {
       setAuth(!auth);
       setTodoheading('');
       setTodotext('');
+
+    setTimeout(()=>{
+      nav('/blog')
+    },500)
     } catch (error) {
       if (error.response) {
         toast.error(`Error: ${error.response.data.message}`);

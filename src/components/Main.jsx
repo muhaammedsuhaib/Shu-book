@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import Signup from './Signup';
 import Collect from './Collect';
 import Login from './Login';
+import Changep from './Changep';
 
  export const passing=createContext()
 const Main = () => {
@@ -14,22 +15,16 @@ const Main = () => {
     const [task,setTask]=useState([]);
     const [userData,setUserData]=useState(null);
 
-    const fetchTasks = async () => {
-      try {
-          const response = await axios.get("http://localhost:4000/api/all");
-          setTask(response.data.tasks);
-      } catch (error) {
-          console.error('Error fetching tasks:', error);
-      }
-  };
   
 
   useEffect(() => {
-    fetchTasks();
     const storedUserData = localStorage.getItem("user");
-    // const DataUser=JSON.parse(storedUserData);
-    setUserData(storedUserData);
+    if (storedUserData) {
+        const parsedUserData = JSON.parse(storedUserData);
+        setUserData(parsedUserData);
+    }
 }, []);
+
   return (
     <div>
       {/* <Navbar/> */}
@@ -41,6 +36,7 @@ const Main = () => {
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/collect' element={<Collect/>}/>
+        <Route path='/change' element={<Changep/>}/>
         </Routes>
         </passing.Provider>
         </BrowserRouter>

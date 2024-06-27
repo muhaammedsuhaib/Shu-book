@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   MDBBtn,
   MDBContainer,
@@ -11,15 +11,19 @@ import {
 } from 'mdb-react-ui-kit';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { passing } from './Main';
 
 function Login() {
   const [collect, setCollect] = useState({ email: '', password: '' });
   // const [userdata,setUserData] = useState(ull);
-  const {userdata,setUserData}=useContext(passing);
+  const {userData,setUserData}=useContext(passing);
   const [error, setError] = useState(null);
   const nav = useNavigate();
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,9 +47,13 @@ function Login() {
         id: response.data.user._id,
         token: response.data.token,
       })); 
+      toast.info(response.data.message);
 
-      // setUserData(response.data.user); // Setting user data from response
-      alert(response.data.message);
+
+            // const parsedUserData = await JSON.parse(response.data.user);
+            setUserData(response.data.user);
+
+
       setTimeout(() => {
         nav('/blog'); // Redirecting to home page after 1 second
       }, 1000);
@@ -53,7 +61,7 @@ function Login() {
       setError(error.response?.data?.message || 'An error occurred'); // Handling error
     }
   };
-
+ 
   return (
     <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
       <MDBRow>
@@ -98,7 +106,7 @@ function Login() {
                 <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://x.com/MuhaammedSuhaib'>
                   <MDBIcon fab icon='twitter' size="sm" />
                 </MDBBtn>
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='mailto:devhubb0@gmail.com'>
                   <MDBIcon fab icon='google' size="sm" />
                 </MDBBtn>
                 <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://github.com/muhaammedsuhaib'>
@@ -109,6 +117,7 @@ function Login() {
           </MDBCard>
         </MDBCol>
       </MDBRow>
+      <ToastContainer/>
     </MDBContainer>
   );
 }

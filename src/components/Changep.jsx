@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   MDBBtn,
   MDBContainer,
@@ -13,29 +13,45 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { passing } from './Main';
 
-function Signup() {
-  const [collect, setCollect] = useState({ email: '', password: '' });
+function Changep() {
+  const { userData, setUserData } = useContext(passing);
+  console.log(userData);
+  const [collect, setCollect] = useState({ current: '', password: '', confirm: '' });
   const [error, setError] = useState(null);
   const nav = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post('http://localhost:4000/api/users/register', {
-        email: collect.email,
-        password: collect.password,
-      });
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
-      toast.info(response.data.message);
-      setCollect({ email: '', password: '' });
+    try {
+      const response = await axios.put(
+        `http://localhost:4000/api/users/${userData.id}/change`,
+        {
+          currentPassword: collect.current,
+          newPassword: collect.password,
+          confirmPassword: collect.confirm,
+        },
+        config
+      );
+
+      toast.success(response.data.message);
+
+      // Update user data if needed
+      setUserData(response.data.user);
 
       setTimeout(() => {
-        nav('/login'); // Redirect to login page after successful signup
+        nav('/blog'); // Redirecting to home page after 1 second
       }, 1000);
     } catch (error) {
-      setError(error.response?.data?.message || 'An error occurred'); // Handle error
+      setError(error.response?.data?.message || 'An error occurred'); // Handling error
     }
   };
 
@@ -44,11 +60,12 @@ function Signup() {
       <MDBRow>
         <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
           <h1 className="my-5 display-3 fw-bold ls-tight px-3" style={{ color: 'hsl(218, 81%, 95%)' }}>
-            Make your day productive <br />
+            Boost Your Productivity <br />
             <span style={{ color: 'hsl(218, 81%, 75%)' }}>with Shubook.</span>
           </h1>
           <p className='px-3' style={{ color: 'hsl(218, 81%, 85%)' }}>
-            Empower every facet of your routine with Shubook's groundbreaking task management system. Seamlessly organize tasks, optimize efficiency, and take command of your daily productivity journey with unparalleled ease and precision.
+            Hey {userData && userData.email.split('@')[0]}, if you need to change your password or forgot it, no problem!{' '}
+            <a href="https://wa.me/7306890297">Help Me</a> Contact the Shubook community for assistance.
           </p>
         </MDBCol>
         <MDBCol md='6' className='position-relative'>
@@ -60,23 +77,28 @@ function Signup() {
                 <MDBInput
                   required
                   wrapperClass="mb-4"
-                  label='Email'
-                  type='email'
-                  value={collect.email}
-                  onChange={(e) => setCollect({ ...collect, email: e.target.value })}
+                  label='Current password'
+                  type='password'
+                  onChange={(e) => setCollect({ ...collect, current: e.target.value })}
                 />
                 <MDBInput
                   required
                   wrapperClass="mb-4"
                   label='Password'
                   type='password'
-                  value={collect.password}
                   onChange={(e) => setCollect({ ...collect, password: e.target.value })}
                 />
-                <MDBBtn className='w-100 mb-2' size='md' type="submit">Sign up</MDBBtn>
+                <MDBInput
+                  required
+                  wrapperClass="mb-4"
+                  label='Confirm password'
+                  type='password'
+                  onChange={(e) => setCollect({ ...collect, confirm: e.target.value })}
+                />
+                <MDBBtn className='w-100 mb-2' size='md' type="submit">Change Password</MDBBtn>
                 {error && <div className="text-danger mb-4">{error}</div>}
               </form>
-              <MDBBtn color='tertiary' onClick={() => nav('/login')}>Login</MDBBtn>
+              <MDBBtn color='tertiary' onClick={() => nav('/blog')}>Cancel</MDBBtn>
               <div className="text-center">
                 <p>www.shubook.com</p>
                 <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }} href='https://www.facebook.com/profile.php?id=100073352894286&mibextid=ZbWKwL'>
@@ -96,9 +118,9 @@ function Signup() {
           </MDBCard>
         </MDBCol>
       </MDBRow>
-      <ToastContainer/>
+      <ToastContainer />
     </MDBContainer>
   );
 }
 
-export default Signup;
+export default Changep;

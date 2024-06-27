@@ -57,7 +57,7 @@ const Blog = () => {
    }
   
    const handleSyncClick = () => {
-fetchTasks();
+   fetchTasks();
     setIsRotating(true);
    
     // Perform your sync logic here
@@ -83,7 +83,6 @@ fetchTasks();
         setEditHeading('');
         setEditText('');
         toast.info("Task edited successfully");
-        // alert("Task edited successfully");
         setTimeout(()=>{
           setEditModal(!editModal);
         },500)
@@ -104,19 +103,18 @@ fetchTasks();
 
    const fetchTasks = async () => {
     try {
-        const response = await axios.get("http://localhost:4000/api/all");
+      console.log(userData.id);
+        const response = await axios.get(`http://localhost:4000/api/${userData.id}/userData`);
         setTask(response.data.tasks);
     } catch (error) {
         console.error('Error fetching tasks:', error);
     }
 };
 
+useEffect(()=>{
 
-
-useEffect(() => {
   fetchTasks();
-}, [ ]);
-
+},[])
 
 
   const clickHandle = async (e) => {
@@ -140,6 +138,15 @@ useEffect(() => {
       console.log("Error adding Data", error);
     }
   };  
+  
+  
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("user");
+    if (storedUserData) {
+        const parsedUserData = JSON.parse(storedUserData);
+        setUserData(parsedUserData);
+    }
+}, []);
   return (
     <>
     <Navbar/>
@@ -183,7 +190,7 @@ useEffect(() => {
 <MDBCol md='3'>
   <div className='my-3 text-white'>
     <div className='p-1'>
-      Hey, {userData && userData._id}! Welcome to ShuBook, the ultimate task management solution meticulously developed by Suhaib, a seasoned software architect. Dive into our platform tailored to supercharge productivity and streamline your daily operations effortlessly. Stay connected with Suhaib on LinkedIn for further insights and updates:<a target='_blank' href='https://www.linkedin.com/in/muhammedsuhaib/' >Connect on LinkedIn.</a> 
+      Hey, {userData && userData.email.split('@')[0]}! Welcome to ShuBook, the ultimate task management solution meticulously developed by Suhaib, a seasoned software architect. Dive into our platform tailored to supercharge productivity and streamline your daily operations effortlessly. Stay connected with Suhaib on LinkedIn for further insights and updates:<a target='_blank' href='https://www.linkedin.com/in/muhammedsuhaib/' >Connect on LinkedIn.</a> 
       
       <div className="container fs-5 text text-white">
         <img src="/Logo.png" alt="Your Brand Logo" width={'150px'}  />
@@ -239,8 +246,8 @@ useEffect(() => {
         <div className="container">
         <form className='container'>
         <MDBInput label="Task name" className='mt-2 mb-4' value={editHeading} onChange={(e)=>setEditHeading(e.target.value)} required/>
-        <MDBTextArea label="Description" id="textAreaExample" rows={10} required value={editText} onChange={(e)=>setEditText(e.target.value)} className='mb-3 p-3'/>
-        <MDBBtn   block onClick={()=>editTask()} ><MDBIcon fas icon="save" /> CHAnge and Save</MDBBtn>        
+        <MDBTextArea label="Description" id="textAreaExample" rows={8} required value={editText} onChange={(e)=>setEditText(e.target.value)} className='mb-3 p-3'/>
+        <MDBBtn   block onClick={()=>editTask()} ><MDBIcon fas icon="save" /> Save</MDBBtn>        
           </form> 
           </div>  
           </div>
