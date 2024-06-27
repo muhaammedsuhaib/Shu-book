@@ -54,7 +54,7 @@ fetchTasks();
 
   const editTask = async (e) => {
     try {
-        await axios.put(`http://localhost:4000/api/edit/${editId}`, {
+        await axios.put(`https://shubook-backend-project.onrender.com/api/edit/${editId}`, {
             Todoheading: editHeading,
             Todotext: editText
         });
@@ -73,7 +73,7 @@ fetchTasks();
 };
   const remove= async (id)=>{
     try {
-       await axios.delete(`http://localhost:4000/api/remove/${id}`)
+       await axios.delete(`https://shubook-backend-project.onrender.com/api/remove/${id}`)
        toast.info("Remove successfully");
        fetchTasks()
     } catch (error) {
@@ -83,7 +83,7 @@ fetchTasks();
 
    const fetchTasks = async () => {
     try {
-        const response = await axios.get("http://localhost:4000/api/all");
+        const response = await axios.get("https://shubook-backend-project.onrender.com/api/all");
         setTask(response.data.tasks);
     } catch (error) {
         console.error('Error fetching tasks:', error);
