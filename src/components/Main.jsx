@@ -20,6 +20,7 @@ const Main = () => {
   useEffect(() => {
     const storedUserData = localStorage.getItem("user");
     if (storedUserData) {
+      console.log("ss",storedUserData);
         const parsedUserData = JSON.parse(storedUserData);
         setUserData(parsedUserData);
     }
