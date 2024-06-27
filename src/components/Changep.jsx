@@ -33,7 +33,7 @@ function Changep() {
 
     try {
       const response = await axios.put(
-        `https://shubook-backend-project.onrender.com/api/users/${userData.id}/change`,
+        `https://shubook-backend-project/api/users/${userData.id}/change`,
         {
           currentPassword: collect.current,
           newPassword: collect.password,
