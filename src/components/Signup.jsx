@@ -23,7 +23,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://shubook-backend-project/api/users/register', {
+      const response = await axios.post('https://shubook-backend-project.onrender.com/api/users/register', {
         email: collect.email,
         password: collect.password,
       });
