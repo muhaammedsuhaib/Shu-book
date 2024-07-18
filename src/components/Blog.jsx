@@ -122,8 +122,11 @@ const Blog = () => {
     if (storedUserData) {
       const parsedUserData = JSON.parse(storedUserData);
       setUserData(parsedUserData);
+    }else{
+      nav('/login')
     }
   }, []);
+
   return (
     <>
       <Navbar />
