@@ -3,8 +3,10 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
-
+import useLogin from "../../hooks/useLogin";
 const Login = () => {
+  const { login, loading, error } = useLogin();
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email address")
@@ -18,11 +20,6 @@ const Login = () => {
     email: "",
     password: "",
   };
-
-  const handleSubmit = (values) => {
-    console.log("Login data:", values);
-  };
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-black">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
@@ -32,7 +29,7 @@ const Login = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={login}
         >
           {() => (
             <Form>
@@ -52,10 +49,13 @@ const Login = () => {
                 placeholder="Enter your password"
                 className="mb-6"
               />
-
+              {error && (
+                <p className="text-red-600 text-center mb-4">{error}</p>
+              )}
               <Button
+                disabled={loading}
                 type="submit"
-                text="Login"
+                text={loading ? "Login...." : "Login"}
                 className="w-full bg-black text-white hover:bg-gray-800 focus:ring-2 focus:ring-gray-500"
               />
             </Form>

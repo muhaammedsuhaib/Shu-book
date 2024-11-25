@@ -3,8 +3,10 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
+import useRegistration from "../../hooks/useRegistration";
 
 const Registration = () => {
+  const { registration, loading, error } = useRegistration();
   const validationSchema = Yup.object({
     username: Yup.string()
       .min(3, "Username must be at least 3 characters")
@@ -24,10 +26,6 @@ const Registration = () => {
     password: "",
   };
 
-  const handleSubmit = (values) => {
-    console.log("Registration data:", values);
-  };
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-black overflow-auto">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
@@ -37,7 +35,7 @@ const Registration = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={registration}
         >
           {() => (
             <Form>
@@ -65,10 +63,13 @@ const Registration = () => {
                 placeholder="Enter your password"
                 className="mb-6"
               />
-
+              {error && (
+                <p className="text-red-600 text-center mb-4">{error}</p>
+              )}
               <Button
+                disabled={loading}
                 type="submit"
-                text="Register"
+                text={loading ? "submit..." : "Register"}
                 className="w-full bg-black text-white hover:bg-gray-800 focus:ring-2 focus:ring-gray-500"
               />
             </Form>
