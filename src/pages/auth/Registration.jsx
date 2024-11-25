@@ -63,9 +63,6 @@ const Registration = () => {
                 placeholder="Enter your password"
                 className="mb-6"
               />
-              {error && (
-                <p className="text-red-600 text-center mb-4">{error}</p>
-              )}
               <Button
                 disabled={loading}
                 type="submit"
