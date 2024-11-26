@@ -31,6 +31,7 @@ const AppRouter = () => {
               </PrivateRoute>
             }
           />
+        <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
       <Toaster />

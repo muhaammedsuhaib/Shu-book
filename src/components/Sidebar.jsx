@@ -2,12 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaTasks, FaUser } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
-import { MdAssignmentAdd } from "react-icons/md";
+import { MdAssignmentAdd, MdHome } from "react-icons/md";
 
 const Sidebar = ({ name, path }) => {
   const menuItems = [
     {
-      to: `addtask`,
+      to: 'home',
+      icon: <MdHome size={25} />,
+      label: "Home",
+    },
+    {
+      to: `create-task`,
       icon: <MdAssignmentAdd size={25} />,
       label: "Add Task",
     },
@@ -19,7 +24,7 @@ const Sidebar = ({ name, path }) => {
       label: "Settings",
     },
   ];
-
+  const defaultPath = path || "home";
   return (
     <div className="flex min-h-screen items-center bg-black text-white">
       <div className="flex flex-col gap-10 p-4">
@@ -28,7 +33,7 @@ const Sidebar = ({ name, path }) => {
             key={index}
             to={`/${name}/${item.to}`}
             className={`block text-lg text-gray-300 hover:bg-gray-700 p-2 rounded transition duration-200 ${
-              path === item.to && "bg-gray-700"
+              defaultPath === item.to && "bg-gray-700"
             }`}
             aria-label={item.label}
           >
