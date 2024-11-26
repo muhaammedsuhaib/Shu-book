@@ -6,7 +6,7 @@ const getToken = () => {
 };
 
 const userAxios = axios.create({
-  baseURL: "https://todolistify-backend.onrender.com",
+  baseURL: "https://todolistify-backend.onrender.com/api/",
   timeout: 5000,
 });
 
