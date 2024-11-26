@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authAxios = axios.create({
-  baseURL: "http://localhost:5000/api/auth/",
+  baseURL: "https://todolistify-backend.onrender.com/auth/",
   headers: {
     "Content-Type": "application/json",
   },

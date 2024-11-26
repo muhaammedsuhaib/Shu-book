@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
