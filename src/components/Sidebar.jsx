@@ -27,7 +27,7 @@ const Sidebar = ({ name, path }) => {
   const defaultPath = path || "home";
   return (
     <div className="flex min-h-screen items-center bg-black text-white">
-      <div className="flex flex-col gap-10 p-4">
+      <div className="flex flex-col gap-10 p-3">
         {menuItems.map((item, index) => (
           <Link
             key={index}
