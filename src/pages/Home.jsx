@@ -11,7 +11,7 @@ const Home = () => {
     dispatch(fetchUserProfile());
   }, [dispatch]);
 
-  let username = user?.data?.user?.user?.username || null;
+  let username = user?.data?.user?.username || null;
 
   if (loading) return <Loading />;
   return (

@@ -21,7 +21,7 @@ const Dashboard = () => {
   }, [dispatch]);
   console.log(error);
 
-  var username = user?.data?.user?.user?.username || null;
+  var username = user?.data?.user?.username || null;
 
   let content;
 
@@ -30,7 +30,7 @@ const Dashboard = () => {
       content = <TaskForm />;
       break;
     case "task":
-      content = <TaskList />;
+      content = <TaskList username={username} />;
       break;
     case "profile":
       content = <Profile />;
@@ -39,7 +39,7 @@ const Dashboard = () => {
       content = <Settings />;
       break;
     default:
-      content = <Welcome username={name} />;
+      content = <Welcome username={username} />;
       break;
   }
 

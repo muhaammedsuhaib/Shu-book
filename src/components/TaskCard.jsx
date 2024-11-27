@@ -1,74 +1,168 @@
-import React from "react";
-import { FaCheck, FaPen, FaTag, FaTrash } from "react-icons/fa";
+import React, { useState } from "react";
+import { PiUsersThreeBold } from "react-icons/pi";
+import { MdWork } from "react-icons/md";
+import { SiGoogletasks } from "react-icons/si";
+import { FaTasks } from "react-icons/fa";
+import { FaCalendarAlt, FaEdit, FaTrash, FaCheckCircle } from "react-icons/fa";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, onSelect, onEdit, onDelete, onComplete }) => {
+  const [showMore, setShowMore] = useState(false);
+
+  const formatDate = (date) => {
+    return date
+      ? new Date(date).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      : "";
+  };
+
+  const iconMap = {
+    Meeting: <PiUsersThreeBold />,
+    Work: <MdWork />,
+    Task: <SiGoogletasks />,
+  };
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md transition-shadow duration-300 hover:shadow-lg">
+    <div
+      className="bg-white shadow-md border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-shadow cursor-pointer"
+      onClick={() => onSelect(task._id)}
+    >
+      {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-semibold text-gray-800">
+        <h4 className="text-lg font-semibold text-gray-800">
           {task.task_name}
-        </h3>
-        <div className="flex space-x-3">
-          <button
-            className="text-blue-500 hover:text-blue-700"
-            aria-label="Edit Task"
-            onClick={() => handleEdit(task.id)}
-          >
-            <FaPen />
-          </button>
-          <button
-            className="text-red-500 hover:text-red-700"
-            aria-label="Delete Task"
-            onClick={() => handleDelete(task.id)}
-          >
-            <FaTrash />
-          </button>
-          <button
-            className={`text-${
-              task.status === "Completed" ? "gray" : "green"
-            }-500 hover:text-${
-              task.status === "Completed" ? "gray" : "green"
-            }-700`}
-            aria-label="Mark Task as Completed"
-            onClick={() => handleComplete(task.id)}
-            disabled={task.status === "Completed"}
-          >
-            <FaCheck />
-          </button>
-        </div>
+        </h4>
+        <span
+          className={`px-3 py-1 text-sm font-medium rounded-full ${
+            task.status === "Completed"
+              ? "bg-green-100 text-green-600"
+              : task.status === "In Progress"
+              ? "bg-blue-100 text-blue-600"
+              : "bg-yellow-100 text-yellow-600"
+          }`}
+        >
+          {task.status}
+        </span>
       </div>
 
-      <p className="text-gray-600 mb-4">{task.description}</p>
-
-      <div className="flex justify-between text-sm text-gray-500 mb-4">
-        <span>Due: {task.due_date}</span>
-        <span>Priority: {task.priority}</span>
-        <span>Status: {task.status}</span>
-      </div>
-
-      <div className="mb-4">
-        <strong>Assigned To:</strong> {task.assigned_to}
-      </div>
-
-      {task.tags && (
-        <div className="mb-4 flex items-center">
-          <FaTag className="mr-2 text-yellow-500" />
-          <span>{task.tags}</span>
-        </div>
-      )}
+      {/* Description */}
+      <p className="text-gray-600 text-sm mb-4">{task.description}</p>
 
       {task.notes && (
         <div className="mb-4">
-          <strong>Notes:</strong> {task.notes}
+          <span className="text-gray-800 font-medium">Notes: </span>
+          <span>{task.notes || "No notes available"}</span>
+        </div>
+      )}
+      {task.task_type && (
+        <div className="mb-3">{iconMap[task.task_type] || <FaTasks />}</div>
+      )}
+
+      {/* Conditionally Rendered Details */}
+      {showMore && (
+        <div className="text-sm text-gray-500 space-y-2">
+          <div className="flex items-center">
+            <FaCalendarAlt className="text-gray-400 mr-2" />
+            <span>
+              Created:{" "}
+              {new Date(task.created_at).toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })}
+            </span>
+          </div>
+          {task.start_date && (
+            <div className="flex items-center">
+              <FaCalendarAlt className="text-gray-400 mr-2" />
+              <span>Start: {formatDate(task.start_date)}</span>
+            </div>
+          )}
+
+          {task.reminddate && (
+            <div className="flex items-center">
+              <FaCalendarAlt className="text-gray-400 mr-2" />
+              <span>Reminder: {formatDate(task.reminddate)}</span>
+              {new Date(task.reminddate) < new Date() && (
+                <FaCheckCircle className="inline-block ml-1 text-green-400" />
+              )}
+            </div>
+          )}
+          {task.completion_date && (
+            <div className="flex items-center">
+              <FaCalendarAlt className="text-gray-400 mr-2" />
+              <span>Completion: {formatDate(task.completion_date)}</span>
+            </div>
+          )}
         </div>
       )}
 
-      {task.attachment && (
-        <div className="mb-4 flex items-center">
-          <FaPaperclip className="mr-2 text-gray-500" />
-          <span>{task.attachment}</span>
-        </div>
-      )}
+      {/* Show More/Less Button */}
+      <button
+        className="text-blue-500 hover:text-blue-700 underline text-sm mt-4 block"
+        onClick={(e) => {
+          e.stopPropagation();
+          setShowMore((prev) => !prev);
+        }}
+      >
+        {showMore ? "Show Less" : "Show More"}
+      </button>
+
+      {/* Priority */}
+      <div className="mt-4">
+        <span
+          className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${
+            task.priority === "High"
+              ? "bg-red-100 text-red-600"
+              : task.priority === "Medium"
+              ? "bg-yellow-100 text-yellow-600"
+              : "bg-blue-100 text-blue-600"
+          }`}
+        >
+          Priority: {task.priority}
+        </span>
+      </div>
+
+      {/* Actions */}
+      <div className="mt-6 flex justify-between">
+        <button
+          className="text-gray-500 hover:text-gray-700"
+          onClick={(e) => {
+            e.stopPropagation();
+            onEdit(task._id);
+          }}
+        >
+          <FaEdit className="inline-block mr-1" /> Edit
+        </button>
+        <button
+          className="text-red-500 hover:text-red-700"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(task._id);
+          }}
+        >
+          <FaTrash className="inline-block mr-1" /> Delete
+        </button>
+        <button
+          className={`${
+            task.status === "Completed"
+              ? "text-gray-300 cursor-not-allowed"
+              : "text-green-500 hover:text-green-700"
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onComplete(task._id);
+          }}
+          disabled={task.status === "Completed"}
+        >
+          <FaCheckCircle className="inline-block mr-1" /> Complete
+        </button>
+      </div>
     </div>
   );
 };

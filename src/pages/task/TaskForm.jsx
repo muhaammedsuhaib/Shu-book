@@ -29,10 +29,8 @@ const TaskForm = () => {
       .required("Description is required"),
     reminddate: Yup.date()
       .min(new Date(), "Reminder date cannot be in the past")
-      .required("Reminder date is required"),
-    start_date: Yup.date()
-      .max(new Date(), "Start date cannot be in the future")
-      .required("Start date is required"),
+      .optional(),
+    start_date: Yup.date().optional(),
     priority: Yup.string()
       .oneOf(["High", "Medium", "Low"], "Invalid priority level")
       .required("Priority is required"),
@@ -41,9 +39,7 @@ const TaskForm = () => {
       .required("Status is required"),
     task_type: Yup.string().required("Task type is required"),
     notes: Yup.string().optional(),
-    completion_date: Yup.date()
-      .min(new Date(), "Completion date cannot be in the past")
-      .optional(),
+    completion_date: Yup.date().optional(),
   });
 
   const handleSubmit = async (values, { resetForm }) => {
@@ -111,7 +107,7 @@ const TaskForm = () => {
               {/* Reminder Date */}
               <div className="mb-4">
                 <FormInput
-                  label="Reminder Date"
+                  label="Reminder Date (Optional)"
                   id="reminddate"
                   name="reminddate"
                   type="date"
@@ -123,7 +119,7 @@ const TaskForm = () => {
               {/* Start Date */}
               <div className="mb-4">
                 <FormInput
-                  label="Start Date"
+                  label="Start Date (Optional)"
                   id="start_date"
                   name="start_date"
                   type="date"
