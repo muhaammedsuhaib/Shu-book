@@ -1,13 +1,14 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
 
-const FormInput = ({ label, id, name, type, placeholder }) => {
+const FormInput = ({ label, id, name, type, placeholder,as }) => {
   return (
     <div className="mb-4">
       <label htmlFor={id} className="block text-gray-700 font-medium">
         {label}
       </label>
       <Field
+        as={as}
         id={id}
         name={name}
         type={type}

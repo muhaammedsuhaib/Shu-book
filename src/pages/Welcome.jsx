@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   FaTasks,
   FaBell,
@@ -7,31 +7,8 @@ import {
   FaClipboardList,
   FaCheckCircle,
 } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile } from "../redux/slices/userSlice";
-
-const Welcome = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { user, loading, error } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    dispatch(fetchUserProfile());
-  }, [dispatch]);
-
-  var username = user?.data?.user?.user?.username || null;
-  useEffect(() => {
-    if (!loading) {
-      if (user) {
-        navigate(`/${username}`);
-      }
-    }
-  }, [user, loading, navigate]);
-
-  if (loading) return <Loading />;
-
+import { Link } from "react-router-dom";
+const Welcome = ({ username }) => {
   const features = [
     {
       icon: <FaTasks className="text-5xl text-white mb-4 animate-bounce" />,
@@ -82,7 +59,7 @@ const Welcome = () => {
           productivity effortlessly.
         </p>
         <Link
-          to="create-task"
+          to={`/${username}/create-task`}
           className="rounded-md px-6 py-3 text-lg font-semibold shadow-lg transition-colors bg-white text-black hover:bg-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-400 hover:scale-105"
           aria-label="Get started by adding a task"
         >

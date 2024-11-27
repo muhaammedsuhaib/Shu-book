@@ -9,9 +9,11 @@ export const fetchUserProfile = createAsyncThunk(
 
       const response = await userAxios.get("/user");
 
-      return response.data; 
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data || "Failed to fetch user profile");
+      return rejectWithValue(
+        error.response.data || "Failed to fetch user profile"
+      );
     }
   }
 );
