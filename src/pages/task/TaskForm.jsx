@@ -47,7 +47,7 @@ const TaskForm = () => {
   });
 
   const handleSubmit = async (values, { resetForm }) => {
-    setLoading(false);
+    setLoading(true);
     try {
       const response = await userAxios.post("/task", values);
       toast.success(response.data.message || "Task created successfully");
